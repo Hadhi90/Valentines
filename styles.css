@@ -1,0 +1,757 @@
+/* =============================================
+   VALENTINE EXPERIENCE - STYLES
+   ============================================= */
+
+/* CSS Variables for Consistent Theming */
+:root {
+    --primary-color: #d4526e;
+    --secondary-color: #c94b63;
+    --accent-color: #f9a8d4;
+    --bg-gradient-start: #fff5f8;
+    --bg-gradient-end: #ffe8ef;
+    --text-primary: #2d1b2e;
+    --text-secondary: #5a3d5c;
+    --card-bg: #ffffff;
+    --shadow-soft: 0 10px 40px rgba(212, 82, 110, 0.15);
+    --shadow-medium: 0 15px 50px rgba(212, 82, 110, 0.25);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Crimson Text', serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+    
+    /* Heart Cursor */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23d4526e"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+}
+
+/* Interactive elements cursor */
+a, button, .gift-card, .date-card, .photo-card, .option-btn {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="%23c94b63"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), pointer !important;
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Section Layout */
+.section {
+    min-height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Typography */
+.main-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+    animation: fadeInUp 1s ease;
+}
+
+.subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    font-weight: 300;
+    animation: fadeInUp 1.2s ease;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--text-secondary);
+    margin-bottom: 50px;
+    font-style: italic;
+}
+
+/* Welcome Section */
+.welcome-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.name-date {
+    margin: 40px 0;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    animation: fadeInUp 1.4s ease;
+}
+
+.her-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.date {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary,
+.btn-kiss {
+    padding: 18px 45px;
+    font-size: 1.2rem;
+    font-family: 'Crimson Text', serif;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    transition: var(--transition);
+    margin-top: 30px;
+    box-shadow: var(--shadow-soft);
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    animation: fadeInUp 1.6s ease, pulse 2s ease-in-out infinite;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Gift Cards - Flip Animation */
+.gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.gift-card {
+    perspective: 1000px;
+    height: 320px;
+}
+
+.gift-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.gift-card.flipped .gift-card-inner {
+    transform: rotateY(180deg);
+}
+
+.gift-card-front,
+.gift-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+}
+
+.gift-card-front {
+    background: linear-gradient(135deg, #ffffff 0%, #fff5f8 100%);
+    border: 2px dashed var(--accent-color);
+}
+
+.gift-card-back {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.gift-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.gift-emoji {
+    font-size: 4.5rem;
+    margin-bottom: 15px;
+}
+
+.gift-card-front p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.gift-card-back h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.gift-card-back p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.gift-card:hover .gift-card-inner {
+    transform: translateY(-5px);
+}
+
+.gift-response {
+    margin: 30px 0;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    font-style: italic;
+    min-height: 30px;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Date Options */
+.date-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin: 50px 0;
+}
+
+.date-card {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+    border: 3px solid transparent;
+}
+
+.date-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
+}
+
+.date-card.selected {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, #fff5f8 0%, #ffffff 100%);
+}
+
+.date-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.date-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.date-card p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.date-response {
+    margin: 30px 0;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    font-style: italic;
+    min-height: 30px;
+}
+
+/* Questions Section */
+.questions-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.question-block {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-soft);
+}
+
+.question-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.option-btn {
+    padding: 15px 20px;
+    background: white;
+    border: 2px solid var(--accent-color);
+    border-radius: 15px;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.option-btn:hover {
+    background: var(--accent-color);
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+}
+
+.option-btn.selected {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+.answer-response {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-style: italic;
+    min-height: 30px;
+}
+
+/* Song Section */
+.songs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.song-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition);
+}
+
+.song-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(212, 82, 110, 0.3);
+}
+
+.song-artwork {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.song-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.song-artwork:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-button {
+    width: 70px;
+    height: 70px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    transition: var(--transition);
+    padding-left: 5px;
+}
+
+.play-button:hover {
+    transform: scale(1.15);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
+}
+
+.play-button.playing::before {
+    content: '⏸';
+    padding-left: 0;
+}
+
+.song-details {
+    padding: 25px;
+    text-align: center;
+}
+
+.song-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.song-artist {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.song-note {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    min-height: 45px;
+}
+
+.spotify-embed {
+    padding: 0 20px 20px 20px;
+}
+
+.spotify-embed iframe {
+    border-radius: 12px;
+}
+
+.spotify-link {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #1DB954;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.spotify-link:hover {
+    background: #1ed760;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(29, 185, 84, 0.3);
+}
+
+/* Photos Section - Flip Cards */
+.photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.photo-card {
+    perspective: 1000px;
+    height: 350px;
+}
+
+.photo-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.photo-card.flipped .photo-card-inner {
+    transform: rotateY(180deg);
+}
+
+.photo-card-front,
+.photo-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.photo-card-front {
+    background: white;
+    padding: 15px;
+}
+
+.memory-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.photo-card-back {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotateY(180deg);
+    padding: 30px;
+}
+
+.photo-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: white;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.photo-card:hover .photo-card-inner {
+    transform: translateY(-5px);
+}
+
+/* Ending Section */
+.ending-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.ending-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.ending-message {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    color: var(--text-secondary);
+    margin-bottom: 50px;
+    font-style: italic;
+}
+
+.kiss-container {
+    margin: 50px 0;
+}
+
+.btn-kiss {
+    background: linear-gradient(135deg, #ff6b9d, #c94b63);
+    color: white;
+    font-size: 1.4rem;
+    padding: 20px 50px;
+}
+
+.btn-kiss:hover {
+    transform: scale(1.08) rotate(-2deg);
+    box-shadow: 0 15px 40px rgba(255, 107, 157, 0.4);
+}
+
+.kiss-received {
+    margin-top: 25px;
+    font-size: 2rem;
+    color: var(--primary-color);
+    animation: heartbeat 1s ease-in-out;
+}
+
+.final-note {
+    margin-top: 60px;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.final-note small {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10%, 30% {
+        transform: scale(1.1);
+    }
+    20%, 40% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 15px;
+    }
+
+    .gifts-grid,
+    .photos-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .songs-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .date-options {
+        grid-template-columns: 1fr;
+    }
+
+    .question-block {
+        padding: 25px;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 15px 35px;
+        font-size: 1rem;
+    }
+
+    .song-card {
+        margin-bottom: 20px;
+    }
+}
+
+/* Smooth Scrolling */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}

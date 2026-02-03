@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Valentine Portal 💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Canvas for confetti -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Section 1: Welcome / Celebration -->
+    <section id="welcome" class="section active">
+        <div class="container">
+            <div class="welcome-content fade-in">
+                <h1 class="main-title">She said YES 💖</h1>
+                <p class="subtitle">So here's a little world I made for us.</p>
+                <div class="name-date">
+                    <p class="her-name">For My Love</p>
+                    <p class="date">February 14, 2026</p>
+                </div>
+                <button class="btn-primary" onclick="enterPortal()">
+                    Enter our Valentine space 💕
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Gifts -->
+    <section id="gifts" class="section">
+        <div class="container">
+            <h2 class="section-title">Choose Your Gifts 🎁</h2>
+            <p class="section-subtitle">You can choose more than one 😌</p>
+            
+            <div class="gifts-grid">
+                <div class="gift-card" onclick="flipGift(this, 0)">
+                    <div class="gift-card-inner">
+                        <div class="gift-card-front">
+                            <div class="gift-icon">🎁</div>
+                            <p>Tap to reveal</p>
+                        </div>
+                        <div class="gift-card-back">
+                            <div class="gift-emoji">🌹</div>
+                            <h3>Flowers & Letter</h3>
+                            <p>Handwritten just for you</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gift-card" onclick="flipGift(this, 1)">
+                    <div class="gift-card-inner">
+                        <div class="gift-card-front">
+                            <div class="gift-icon">🎁</div>
+                            <p>Tap to reveal</p>
+                        </div>
+                        <div class="gift-card-back">
+                            <div class="gift-emoji">📚</div>
+                            <h3>A Special Book</h3>
+                            <p>With a bookmark & my note</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gift-card" onclick="flipGift(this, 2)">
+                    <div class="gift-card-inner">
+                        <div class="gift-card-front">
+                            <div class="gift-icon">🎁</div>
+                            <p>Tap to reveal</p>
+                        </div>
+                        <div class="gift-card-back">
+                            <div class="gift-emoji">💍</div>
+                            <h3>A Keepsake</h3>
+                            <p>Something to remember us</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gift-card" onclick="flipGift(this, 3)">
+                    <div class="gift-card-inner">
+                        <div class="gift-card-front">
+                            <div class="gift-icon">🎁</div>
+                            <p>Tap to reveal</p>
+                        </div>
+                        <div class="gift-card-back">
+                            <div class="gift-emoji">🎧</div>
+                            <h3>Something Special</h3>
+                            <p>Just for you</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="gift-response" class="gift-response"></div>
+
+            <button class="btn-secondary" onclick="nextSection('gifts', 'dates')">
+                Continue to Date Ideas 💑
+            </button>
+        </div>
+    </section>
+
+    <!-- Section 3: Date Options -->
+    <section id="dates" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Valentine Date 💑</h2>
+            <p class="section-subtitle">Our Valentine date should be...</p>
+            
+            <div class="date-options">
+                <div class="date-card" onclick="selectDate(this, 'cozy')">
+                    <div class="date-icon">🍿</div>
+                    <h3>Something Cozy</h3>
+                    <p>Virtual movie night with snacks</p>
+                </div>
+
+                <div class="date-card" onclick="selectDate(this, 'fun')">
+                    <div class="date-icon">🎮</div>
+                    <h3>Something Fun</h3>
+                    <p>Online game night & laughter</p>
+                </div>
+
+                <div class="date-card" onclick="selectDate(this, 'simple')">
+                    <div class="date-icon">☕</div>
+                    <h3>Something Simple</h3>
+                    <p>Late-night call, just us two</p>
+                </div>
+
+                <div class="date-card" onclick="selectDate(this, 'studious')">
+                    <div class="date-icon">📖</div>
+                    <h3>Study Together</h3>
+                    <p>Silent focus with sweet breaks</p>
+                </div>
+
+                <div class="date-card" onclick="selectDate(this, 'foodie')">
+                    <div class="date-icon">🍕</div>
+                    <h3>Dinner Date</h3>
+                    <p>Order food at the same time</p>
+                </div>
+            </div>
+
+            <div id="date-response" class="date-response"></div>
+
+            <button class="btn-secondary" onclick="nextSection('dates', 'questions')">
+                Next: Fun Questions 💭
+            </button>
+        </div>
+    </section>
+
+    <!-- Section 4: Fun Q&A -->
+    <section id="questions" class="section">
+        <div class="container">
+            <h2 class="section-title">A Few Questions 💭</h2>
+            <p class="section-subtitle">Just for us to know...</p>
+            
+            <div class="questions-container">
+                <!-- Question 1 -->
+                <div class="question-block">
+                    <h3 class="question-text">Who is the Boss in our relationship?</h3>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="answerQuestion(this, 0, 'Correct Answer💕')">
+                            You
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 0, 'Veryy muchh Truee ')">
+                            Obviously You
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 0, 'Yes you are the one in charge 😘')">
+                            You only
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 0, 'Wronggg')">
+                            Me (just kidding 😅)
+                        </button>
+                    </div>
+                    <p class="answer-response" id="response-0"></p>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-block">
+                    <h3 class="question-text">Who is Always Right:</h3>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="answerQuestion(this, 1, 'Correct ✔️ You don’t just feel right — you are right 😌👑')">
+                            You
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 1, 'Proof or no proof, you already won this argument 🔍✨')">
+                            You (With Evidence)
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 1, 'Facts are optional when confidence is this strong 😏')">
+                            You (Without Evidence)
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 1, 'Scientists are confused… but the conclusion is still you 🔬💖')">
+                            Science is Still Studying This.
+                        </button>
+                    </div>
+                    <p class="answer-response" id="response-1"></p>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-block">
+                    <h3 class="question-text">Who is more adorable when angry?</h3>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="answerQuestion(this, 2, 'Even mad, you’re still cute. That’s unfair but I accept it 😤💘')">
+                            You
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 2, 'You deny it. I smile. We both know the truth 😌')">
+                            You but You Deny it.
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 2, 'Worth the risk. Still adorable. No regrets 😅❤️')">
+                            You and I’m risking my life saying this
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 2, 'Nice try. Even this answer knows it’s lying 😂')">
+                            Me (lying)
+                        </button>
+                    </div>
+                    <p class="answer-response" id="response-2"></p>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question-block">
+                    <h3 class="question-text">Who is the better partner?</h3>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="answerQuestion(this, 3, 'No qualifiers needed. Just you. Always ❤️')">
+                            You
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 3, 'Even then, you’re still my best choice 💪💖')">
+                            You on Your Worst Day.
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 3, 'Your best days are incredible… but not required 😌')">
+                            You on your best day
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 3, 'Because I like reminding you how amazing you are 😏')">
+                            Why are you still asking
+                        </button>
+                    </div>
+                    <p class="answer-response" id="response-3"></p>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question-block">
+                    <h3 class="question-text">Who is better at making the other smile?</h3>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="answerQuestion(this, 4, 'No effort, no warning — smile activated 😊')">
+                            You Effortlessly
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 4, 'You don’t try… and that’s somehow the magic ✨')">
+                            You, Without Trying.
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 4, 'Existing suits you. Please keep doing it 😌💕')">
+                            You Just by Existing
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 4, 'At this point, it’s just a confirmed fact 📜💖')">
+                            Again.....YOU
+                        </button>
+                    </div>
+                    <p class="answer-response" id="response-4"></p>
+                </div>
+
+                
+
+                <!-- Question 6 -->
+                <div class="question-block">
+                    <h3 class="question-text">Who is the best?</h3>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="answerQuestion(this, 5, 'Correct ✔️ Basic truth, universally accepted 😌')">
+                            YOU
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 5, 'Extra letters, extra emphasis, still correct 💖')">
+                            YOUUU
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 5, 'Maximum confidence achieved. Final answer locked 🔒👑')">
+                            YOUUUUUU
+                        </button>
+                        <button class="option-btn" onclick="answerQuestion(this, 5, 'Exactly. Quiz completed. Winner: You 🎉💋')">
+                            Why is this even a question
+                        </button>
+                    </div>
+                    <p class="answer-response" id="response-5"></p>
+                </div>
+            </div>
+
+            <button class="btn-secondary" onclick="nextSection('questions', 'song')">
+                Our Song Awaits 🎶
+            </button>
+        </div>
+    </section>
+
+    <!-- Section 5: Our Songs -->
+    <section id="song" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Songs 🎶</h2>
+            <p class="section-subtitle">These songs remind me of us. Each one tells a part of our story.</p>
+            
+            <div class="songs-grid">
+                <!-- Song 1 -->
+                <div class="song-card">
+                    <div class="song-artwork">
+                        <img src="images/song-cover-1.jpg" alt="Song 1" class="song-image">
+                        <div class="play-overlay" onclick="toggleSongPlay(0)">
+                            <div class="play-button" id="play-btn-0">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="song-details">
+                        <h3 class="song-title">Perfect</h3>
+                        <p class="song-artist">Ed Sheeran</p>
+                        <p class="song-note">
+                            "This reminds me of when we first met."
+                        </p>
+                    </div>
+
+                    <!-- Embedded Spotify Player -->
+                    <div class="spotify-embed">
+                        <!-- Replace YOUR_TRACK_ID_1 with actual Spotify track ID -->
+                        <iframe style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/track/0tgVpDi06FyKpA1z0VMD4v?utm_source=generator" 
+                                width="100%" 
+                                height="152" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Song 2 -->
+                <div class="song-card">
+                    <div class="song-artwork">
+                        <img src="images/song-cover-2.jpg" alt="Song 2" class="song-image">
+                        <div class="play-overlay" onclick="toggleSongPlay(1)">
+                            <div class="play-button" id="play-btn-1">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="song-details">
+                        <h3 class="song-title">Best Part</h3>
+                        <p class="song-artist">H.E.R</p>
+                        <p class="song-note">
+                            "Our late-night conversations feel like this."
+                        </p>
+                    </div>
+
+                    <!-- Embedded Spotify Player -->
+                    <div class="spotify-embed">
+                        <!-- Replace YOUR_TRACK_ID_2 with actual Spotify track ID -->
+                        <iframe style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/track/1Q7EgiMOuwDcB0PJC6AzON?utm_source=generator" 
+                                width="100%" 
+                                height="152" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Song 3 -->
+                <div class="song-card">
+                    <div class="song-artwork">
+                        <img src="images/song-cover-3.jpg" alt="Song 3" class="song-image">
+                        <div class="play-overlay" onclick="toggleSongPlay(2)">
+                            <div class="play-button" id="play-btn-2">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="song-details">
+                        <h3 class="song-title">Love me Like You Do</h3>
+                        <p class="song-artist">Ellie Goulding</p>
+                        <p class="song-note">
+                            "This is how I feel when I think of you."
+                        </p>
+                    </div>
+
+                    <!-- Embedded Spotify Player -->
+                    <div class="spotify-embed">
+                        <!-- Replace YOUR_TRACK_ID_3 with actual Spotify track ID -->
+                        <iframe style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/track/0Cy7wt6IlRfBPHXXjmZbcP?utm_source=generator" 
+                                width="100%" 
+                                height="152" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Song 4 -->
+                <div class="song-card">
+                    <div class="song-artwork">
+                        <img src="images/song-cover-4.jpg" alt="Song 4" class="song-image">
+                        <div class="play-overlay" onclick="toggleSongPlay(3)">
+                            <div class="play-button" id="play-btn-3">▶</div>
+                        </div>
+                    </div>
+                    
+                    <div class="song-details">
+                        <h3 class="song-title">Blessed</h3>
+                        <p class="song-artist">Daniel Ceasar</p>
+                        <p class="song-note">
+                            "Our future together sounds like this."
+                        </p>
+                    </div>
+
+                    <!-- Embedded Spotify Player -->
+                    <div class="spotify-embed">
+                        <!-- Replace YOUR_TRACK_ID_4 with actual Spotify track ID -->
+                        <iframe style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/track/2XjoHA58XD0t3qye8bYGU8?utm_source=generator" 
+                                width="100%" 
+                                height="152" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-secondary" onclick="nextSection('song', 'photos')">
+                See Our Memories 📸
+            </button>
+        </div>
+    </section>
+
+    <!-- Section 6: Our Photos -->
+    <section id="photos" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Memories 📸</h2>
+            <p class="section-subtitle">Every moment with you is worth keeping</p>
+            
+            <div class="photos-grid">
+                <div class="photo-card" onclick="flipPhoto(this)">
+                    <div class="photo-card-inner">
+                        <div class="photo-card-front">
+                            <img src="images/photo1.jpg" alt="Us" class="memory-img">
+                        </div>
+                        <div class="photo-card-back">
+                            <p class="photo-caption">This smile 💖</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="photo-card" onclick="flipPhoto(this)">
+                    <div class="photo-card-inner">
+                        <div class="photo-card-front">
+                            <img src="images/photo2.jpg" alt="Us" class="memory-img">
+                        </div>
+                        <div class="photo-card-back">
+                            <p class="photo-caption">My favorite person</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="photo-card" onclick="flipPhoto(this)">
+                    <div class="photo-card-inner">
+                        <div class="photo-card-front">
+                            <img src="images/photo3.jpg" alt="Us" class="memory-img">
+                        </div>
+                        <div class="photo-card-back">
+                            <p class="photo-caption">Always you</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="photo-card" onclick="flipPhoto(this)">
+                    <div class="photo-card-inner">
+                        <div class="photo-card-front">
+                            <img src="images/photo4.jpg" alt="Us" class="memory-img">
+                        </div>
+                        <div class="photo-card-back">
+                            <p class="photo-caption">Forever grateful</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="photo-card" onclick="flipPhoto(this)">
+                    <div class="photo-card-inner">
+                        <div class="photo-card-front">
+                            <img src="images/photo5.jpg" alt="Us" class="memory-img">
+                        </div>
+                        <div class="photo-card-back">
+                            <p class="photo-caption">Many more to come...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="photo-card" onclick="flipPhoto(this)">
+                    <div class="photo-card-inner">
+                        <div class="photo-card-front">
+                            <img src="images/photo6.jpeg" alt="Us" class="memory-img">
+                        </div>
+                        <div class="photo-card-back">
+                            <p class="photo-caption">You and me ❤️</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-secondary" onclick="nextSection('photos', 'ending')">
+                One More Thing... 💕
+            </button>
+        </div>
+    </section>
+
+    <!-- Section 7: Ending -->
+    <section id="ending" class="section">
+        <div class="container">
+            <div class="ending-content">
+                <h2 class="ending-title">This is just one Valentine.</h2>
+                <p class="ending-message">I want a lifetime of choosing you.</p>
+                
+                <div class="kiss-container">
+                    <button class="btn-kiss" id="kiss-btn" onclick="sendKiss()">
+                        Send me a kiss 😘
+                    </button>
+                    <p class="kiss-received" id="kiss-received"></p>
+                </div>
+
+                <p class="final-note">
+                    Made with all my love 💖<br>
+                    <small>Last updated by your Valentine</small>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
